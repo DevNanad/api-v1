@@ -5,16 +5,26 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/server.js"
+    "start": "nodemon src/server.js",
+    "embed": "node src/vectorize.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@langchain/core": "^0.3.3",
+    "@langchain/mongodb": "^0.1.0",
+    "@langchain/openai": "^0.3.2",
+    "@langchain/textsplitters": "^0.1.0",
+    "ai": "^3.4.8",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "mammoth": "^1.8.0",
+    "mongodb": "^6.9.0",
     "morgan": "^1.10.0",
-    "openai": "^4.63.0"
+    "openai": "^4.63.0",
+    "pdf-parse": "^1.1.1",
+    "xlsx": "^0.18.5"
   }
 }
