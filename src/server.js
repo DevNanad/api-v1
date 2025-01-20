@@ -6,6 +6,8 @@ import morgan from "morgan";
 
 import chatRouter from "./routes/chat.route.js";
 import searchRouter from "./routes/search.route.js";
+import authRoutes from "./routes/auth.route.js";
+import subscriptionRoutes from "./routes/subscription.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,6 +34,8 @@ app.use((err, req, res, next) => {
 //Routes
 app.use("/", chatRouter);
 app.use("/search", searchRouter);
+app.use("/auth", authRoutes);
+app.use("/subscriptions", subscriptionRoutes);
 
 app.listen(PORT, () => {
   console.log("Listening on port: ", PORT);
