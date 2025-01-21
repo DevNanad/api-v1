@@ -5,7 +5,7 @@ import OpenAI from "openai";
 import dotenv from "dotenv";
 dotenv.config();
 
-import { ValidationError } from "../errors.js";
+import { ValidationError } from "../modules/errors.module";
 
 const apiKey = process.env.OPENAI_API_KEY;
 
@@ -32,7 +32,7 @@ export const sendResponse = async (req, res, next) => {
 
     //console.log(completion);
 
-    res.status(200).json(completion);
+    res.status(200).json({ message: "helloooo world" });
   } catch (error) {
     next(error);
     res.send(error);
