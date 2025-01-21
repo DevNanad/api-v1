@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String       @id @default(uuid())
+  fname              String
+  lname              String
+  email              String       @unique
+  password           String
+  subscription       Subscription
+  subscription_start DateTime
+  subscription_end   DateTime
+  senders            Sender[]
+  messages           Message[]
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  sender    String
+  content   String
+  timestamp DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+model Sender {
+  id         String @id @default(uuid())
+  user       User   @relation(fields: [userId], references: [id])
+  userId     String
+  evaluation String
+}
+
+enum Subscription {
+  FREE
+  BASIC
+  ENTERPRISE
+}
