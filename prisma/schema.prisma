@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -8,16 +9,24 @@ datasource db {
 }
 
 model User {
+  id       String    @id @default(uuid())
+  email    String    @unique
+  password String
+  role     Role      @default(USER)
+  senders  Sender[]
+  messages Message[]
+  profile  Profile?
+}
+
+model Profile {
   id                 String       @id @default(uuid())
-  fname              String
-  lname              String
-  email              String       @unique
-  password           String
-  subscription       Subscription
+  fname              String?
+  lname              String?
+  subscription       Subscription @default(BASIC)
   subscription_start DateTime
   subscription_end   DateTime
-  senders            Sender[]
-  messages           Message[]
+  user               User         @relation(fields: [userId], references: [id])
+  userId             String       @unique
 }
 
 model Message {
@@ -30,14 +39,22 @@ model Message {
 }
 
 model Sender {
-  id         String @id @default(uuid())
-  user       User   @relation(fields: [userId], references: [id])
-  userId     String
-  evaluation String
+  id           String  @id @default(uuid())
+  user         User    @relation(fields: [userId], references: [id])
+  userId       String
+  sender_email String
+  name         String
+  evaluation   String?
 }
 
 enum Subscription {
   FREE
   BASIC
   ENTERPRISE
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPERADMIN
 }

@@ -1,14 +1,14 @@
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import argon2 from "argon2";
 
 //Compare password
 export const comparePasswords = (password, hash) => {
-  return bcrypt.compare(password, hash);
+  return argon2.verify(hash, password);
 };
 
 //Hash Password
 export const hashPassword = (password) => {
-  return bcrypt.hash(password, 5);
+  return argon2.hash(password);
 };
 
 //Protect incoming requests

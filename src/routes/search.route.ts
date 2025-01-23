@@ -1,7 +1,7 @@
 import { Router } from "express";
 const router = Router();
 
-import { searchVector } from "../controller/search.controller.js";
+import { searchVector } from "../controller/search.controller";
 
 const asyncHandler = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next);

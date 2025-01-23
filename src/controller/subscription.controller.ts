@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ValidationError } from "../errors.js";
+import { ValidationError } from "../modules/errors.module";
 
 const prisma = new PrismaClient();
 
@@ -23,7 +23,7 @@ export const updateSubscription = async (req, res, next) => {
     }
 
     // Update user's subscription
-    const updatedUser = await prisma.user.update({
+    const updatedUser = await req.db.subscription.update({
       where: { id: userId },
       data: {
         subscription: subscription.toUpperCase(),
@@ -46,7 +46,7 @@ export const getSubscription = async (req, res, next) => {
     const { userId } = req.params;
 
     // Find the user
-    const user = await prisma.user.findUnique({
+    const user = await req.db.user.findUnique({
       where: { id: userId },
       select: {
         subscription: true,

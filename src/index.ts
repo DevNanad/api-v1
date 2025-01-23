@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
-import { createServer } from "./server.js";
-import config from "./config/index.js";
+import { createServer } from "./server";
+import config from "./config";
 
 dotenv.config();
 

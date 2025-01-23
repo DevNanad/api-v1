@@ -5,7 +5,12 @@ export const corsOptions = {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      // Respond with a specific error for disallowed origins
+      const error: any = new Error(
+        `CORS policy does not allow this origin: ${origin}`
+      );
+      error.statusCode = 403; // Set a more appropriate status code
+      callback(error);
     }
   },
   optionsSuccessStatus: 200,

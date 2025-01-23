@@ -2,7 +2,6 @@
   "name": "api-v1",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build": "tsc -p tsconfig.json",
@@ -16,8 +15,10 @@
     "@langchain/mongodb": "^0.1.0",
     "@langchain/openai": "^0.3.2",
     "@langchain/textsplitters": "^0.1.0",
+    "@prisma/adapter-pg": "^6.2.1",
     "@prisma/client": "^6.2.1",
     "ai": "^3.4.8",
+    "argon2": "^0.41.1",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -30,6 +31,7 @@
     "morgan": "^1.10.0",
     "openai": "^4.63.0",
     "pdf-parse": "^1.1.1",
+    "pg": "^8.13.1",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
